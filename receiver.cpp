@@ -1,7 +1,7 @@
 #include <array>
 #include <iostream>
 #include <string>
-#include <receiver.h>
+#include "receiver.h"
 
 
 void Radioreceiver::input() {
@@ -17,15 +17,23 @@ void Radioreceiver::input() {
             std::cout << " Type of modulation: ";
             std::cin >> receivers[i].modulation_type;
 
-            if (!validate(receivers[i].working_frequency,
-                          receivers[i].sensitivity,
-                          receivers[i].modulation_type)) {
+            if (!validate_wf(receivers[i].working_frequency)) {
                 error();
         
                 receivers[i].working_frequency = 404.0;
+            }
+            else if (!validate_st(receivers[i].sensitivity))
+            {
+                error();
                 receivers[i].sensitivity = 404.0;
+            }
+            else if (!validate_mt(receivers[i].modulation_type))
+            {
+                error();
                 receivers[i].modulation_type = "ERROR";
             }
+            
+            
         }
     }
 
