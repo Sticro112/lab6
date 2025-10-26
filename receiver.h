@@ -18,8 +18,14 @@ private:
         std::cout << "Error!!\n";
     }
 
-    bool validate(double wf, double st, std::string& mt) const {
-        return (wf > 0 && st > 0 && !mt.empty());
+    bool validate_wf(double wf) const {
+        return (wf > 0);
+    }
+    bool validate_st(double st) const {
+        return (st > 0);
+    }
+    bool validate_mt(std::string& mt) const {
+        return (!mt.empty());
     }
 
 public:
